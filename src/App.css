@@ -1,0 +1,9 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add this if you want to force animation re-trigger */
+section {
+  will-change: transform, opacity;
+}
+/* Add this if you want to force animation re-trigger */
