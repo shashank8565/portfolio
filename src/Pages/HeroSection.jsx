@@ -7,6 +7,10 @@ import bottom from "../assets/bottom.png";
 import "../App.css";
 import p2 from "../assets/p2.png";
 import project from "../assets/project.png";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import contact1 from "../assets/contact1.png";
+import contact2 from "../assets/contact2.png";
+import contact3 from "../assets/contact3.png";
 
 // Import icons
 import {
@@ -126,7 +130,6 @@ const HeroSection = () => {
         </motion.button>
       </div>
 
-      {/* Tech Stack Section */}
       <section
         id="about"
         className="relative bg-black py-16 px-4 min-h-screen overflow-hidden"
@@ -157,7 +160,7 @@ const HeroSection = () => {
 
         {/* Tech Grid */}
         <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-5xl mx-auto relative z-10"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-5xl mx-auto relative z-10 mb-20"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -175,6 +178,59 @@ const HeroSection = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* About Me Section */}
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="relative bg-black bg-opacity-30 backdrop-blur-lg border border-transparent rounded-xl p-6 md:p-10 transition duration-300 group">
+            <div className="absolute inset-0 rounded-xl border-2 border-blue-600 group-hover:border-pink-500 animate-pulse pointer-events-none z-0"></div>
+
+            <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
+              <div className="flex-shrink-0">
+                <img
+                  src={img}
+                  alt="Shashank"
+                  className="rounded-full w-40 sm:w-48 md:w-56 object-cover border-4 border-blue-600 shadow-lg"
+                />
+              </div>
+              <div className="flex-1 text-white">
+                <h2 className="text-3xl font-bold mb-4">About Me</h2>
+                <p className="text-gray-300 mb-3">
+                  <strong>Education:</strong>
+                  <br />
+                  BCA from Chandigarh University
+                  <br />
+                  MCA from Chandigarh Group of Colleges, Landran
+                </p>
+                <p className="text-gray-300 mb-3">
+                  <strong>Skills:</strong> HTML, CSS, JavaScript, React,
+                  Node.js, Express, MongoDB, Tailwind CSS
+                </p>
+                <p className="text-gray-300 mb-3">
+                  <strong>Hobbies:</strong> Yoga, Meditation, Coding, Exploring
+                  Tech
+                </p>
+                <div className="flex gap-4 mt-4">
+                  <a
+                    href="https://www.linkedin.com/in/your-linkedin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:text-pink-400 text-2xl"
+                  >
+                    <FaLinkedin />
+                  </a>
+                  <a
+                    href="https://github.com/your-github"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white text-2xl"
+                  >
+                    <FaGithub />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Glow Image Below */}
         <img
@@ -263,6 +319,87 @@ const HeroSection = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="relative py-20 px-6 bg-black text-white overflow-hidden">
+        {/* Overlays */}
+        <img
+          src={contact1}
+          alt="overlay"
+          className="absolute top-0 left-100 w-60  pointer-events-none"
+        />
+        <img
+          src={contact2}
+          alt="overlay"
+          className="absolute bottom-30 right-0 w-40  pointer-events-none"
+        />
+
+        <div className="relative z-10 max-w-3xl mx-auto bg-[#111111] p-8 rounded-3xl shadow-lg backdrop-blur-sm">
+          <h2 className="text-3xl font-bold text-center mb-6">Let's Connect</h2>
+
+          <form className="space-y-6">
+            <div>
+              <label className="block mb-1 text-sm text-gray-300">
+                Your Name
+              </label>
+              <input
+                type="text"
+                className="w-full bg-[#1c1c1c] text-white px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600"
+                placeholder="John Doe"
+              />
+            </div>
+            <div>
+              <label className="block mb-1 text-sm text-gray-300">Email</label>
+              <input
+                type="email"
+                className="w-full bg-[#1c1c1c] text-white px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600"
+                placeholder="john@example.com"
+              />
+            </div>
+            <div>
+              <label className="block mb-1 text-sm text-gray-300">
+                Message
+              </label>
+              <textarea
+                className="w-full bg-[#1c1c1c] text-white px-4 py-2 rounded-xl h-32 resize-none focus:outline-none focus:ring-2 focus:ring-blue-600"
+                placeholder="Write your message..."
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-xl transition-all duration-300"
+            >
+              Send Message
+            </button>
+          </form>
+
+          {/* Social Links */}
+          <div className="mt-8 text-center flex justify-center gap-6">
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition text-2xl"
+              aria-label="GitHub"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://linkedin.com/in/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition text-2xl"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin />
+            </a>
+          </div>
+        </div>
+
+        {/* Gradient Overlay at Bottom */}
+        <div className="absolute bottom-0 left-0 w-full h-60 z-0">
+          <div className="w-full h-full bg-gradient-to-r from-orange-500 via-pink-500 to-blue-600 opacity-80 blur-3xl" />
         </div>
       </section>
     </>
