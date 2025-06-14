@@ -7,10 +7,12 @@ import bottom from "../assets/bottom.png";
 import "../App.css";
 import p2 from "../assets/p2.png";
 import project from "../assets/project.png";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaChevronDown } from "react-icons/fa";
 import contact1 from "../assets/contact1.png";
 import contact2 from "../assets/contact2.png";
 import contact3 from "../assets/contact3.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Import icons
 import {
@@ -22,6 +24,7 @@ import {
   FaDatabase,
 } from "react-icons/fa";
 import { SiTailwindcss, SiExpress } from "react-icons/si";
+import emailjs from "@emailjs/browser";
 
 const HeroSection = () => {
   const techStack = [
@@ -45,6 +48,39 @@ const HeroSection = () => {
     scrollRef.current?.scrollBy({ left: 400, behavior: "smooth" });
   };
 
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form.current);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const message = formData.get("message");
+
+    // Basic validation
+    if (!email.trim() || !message.trim()) {
+      toast.error("Email and message fields cannot be empty.");
+      return;
+    }
+
+    emailjs
+      .sendForm(
+        IMPORT.meta.env.VITE_SERVICE_ID,
+        IMPORT.meta.env.VITE_TEMPLATE_ID,
+        form.current,
+        VITE_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          toast.success("Message sent successfully!");
+          form.current.reset(); // Clear the form after success
+        },
+        (error) => {
+          toast.error("Something went wrong. Please try again.");
+        }
+      );
+  };
   const cardVariant = {
     hidden: { opacity: 0, y: 50 },
     visible: (i) => ({
@@ -81,53 +117,77 @@ const HeroSection = () => {
       {/* Hero Section */}
       <div
         id="home"
-        className="relative bg-cover bg-center h-screen bg-no-repeat flex flex-col items-center gap-5 justify-center px-4 text-center"
+        className=" pt-32 relative bg-cover bg-center h-screen bg-no-repeat flex flex-col items-center gap-5 justify-center px-4 text-center"
         style={{ backgroundImage: `url(${background})` }}
       >
-        <motion.img
-          src={img}
-          alt="Profile"
-          className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-56 lg:h-56 xl:w-64 xl:h-64"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        />
+        {" "}
+        <div className=" backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-4 flex max-w-4xl w-full flex-col gap-0 items-center">
+          <motion.img
+            src={img}
+            alt="Profile"
+            className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-56 lg:h-56 xl:w-64 xl:h-64"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          />
 
-        <motion.h1
-          className="font-extrabold text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
-          initial={{ opacity: 0, y: -40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          Hi, my name is
-        </motion.h1>
+          <motion.h1
+            className="font-extrabold text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            Hi, my name is
+          </motion.h1>
 
-        <motion.h1
-          className="font-bold text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
-          initial={{ opacity: 0, y: -40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          Shashank
-        </motion.h1>
+          <motion.h1
+            className="font-bold text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            Shashank
+          </motion.h1>
 
-        <motion.h1
-          className="capitalize font-bold text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
-          initial={{ opacity: 0, y: -40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          Full Stack Developer
-        </motion.h1>
+          <motion.h1
+            className="capitalize font-bold text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            Full Stack Developer
+          </motion.h1>
 
-        <motion.button
-          className="bg-black rounded-lg py-2 px-6 text-sm sm:text-base text-white font-bold border border-white mt-4"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 1.1 }}
-        >
-          Get In Touch
-        </motion.button>
+          <p className="text-gray-300 text-lg mt-2">
+            I build modern web applications with clean and scalable code.
+          </p>
+
+          <motion.button
+            className="bg-black rounded-lg py-2 px-6 text-sm sm:text-base text-white font-bold border border-white mt-4"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 1.1 }}
+          >
+            Get In Touch
+          </motion.button>
+
+          <div className="flex gap-4 mt-4 justify-center">
+            <a
+              href="https://github.com/yourprofile"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub className="text-2xl hover:text-white" />
+            </a>
+            <a
+              href="https://linkedin.com/in/yourprofile"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin className="text-2xl hover:text-white" />
+            </a>
+          </div>
+        </div>
       </div>
 
       <section
@@ -240,7 +300,10 @@ const HeroSection = () => {
         />
       </section>
 
-      <section className="relative py-12 text-center overflow-hidden bg-black text-white">
+      <section
+        id="projects"
+        className="relative py-12 text-center overflow-hidden bg-black text-white"
+      >
         {/* Spiky Background Overlay */}
         <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
           <img
@@ -322,8 +385,12 @@ const HeroSection = () => {
         </div>
       </section>
 
-      <section className="relative py-20 px-6 bg-black text-white overflow-hidden">
+      <section
+        id="contact"
+        className="relative py-20 px-6 bg-black text-white overflow-hidden"
+      >
         {/* Overlays */}
+
         <img
           src={contact1}
           alt="overlay"
@@ -338,12 +405,13 @@ const HeroSection = () => {
         <div className="relative z-10 max-w-3xl mx-auto bg-[#111111] p-8 rounded-3xl shadow-lg backdrop-blur-sm">
           <h2 className="text-3xl font-bold text-center mb-6">Let's Connect</h2>
 
-          <form className="space-y-6">
+          <form className="space-y-6" ref={form} onSubmit={sendEmail}>
             <div>
               <label className="block mb-1 text-sm text-gray-300">
                 Your Name
               </label>
               <input
+                name="name"
                 type="text"
                 className="w-full bg-[#1c1c1c] text-white px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600"
                 placeholder="John Doe"
@@ -352,6 +420,7 @@ const HeroSection = () => {
             <div>
               <label className="block mb-1 text-sm text-gray-300">Email</label>
               <input
+                name="email"
                 type="email"
                 className="w-full bg-[#1c1c1c] text-white px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600"
                 placeholder="john@example.com"
@@ -362,6 +431,7 @@ const HeroSection = () => {
                 Message
               </label>
               <textarea
+                name="message"
                 className="w-full bg-[#1c1c1c] text-white px-4 py-2 rounded-xl h-32 resize-none focus:outline-none focus:ring-2 focus:ring-blue-600"
                 placeholder="Write your message..."
               ></textarea>
@@ -372,6 +442,18 @@ const HeroSection = () => {
             >
               Send Message
             </button>
+            <ToastContainer
+              // 👈 This ensures the toast shows on top-right
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="dark"
+            />
           </form>
 
           {/* Social Links */}

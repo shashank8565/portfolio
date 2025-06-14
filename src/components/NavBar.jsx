@@ -8,9 +8,9 @@ const NavBar = () => {
 
   const navItems = [
     { to: "#home", label: "Home" },
+    { to: "#about", label: "About" },
     { to: "#projects", label: "Projects" },
     { to: "#contact", label: "Contact" },
-    { to: "#about", label: "About" },
   ];
 
   return (
@@ -30,7 +30,7 @@ const NavBar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden sm:flex justify-center items-center gap-4 font-bold text-sm sm:text-md mt-4 border rounded-2xl py-4 px-6 bg-black bg-opacity-60">
+        <ul className="hidden sm:flex justify-center items-center gap-4 font-bold text-sm sm:text-md mt-4 border rounded-2xl py-4 px-6 bg-black bg-opacity-60 top-0 left-0 z-50">
           {navItems.map((item) => (
             <motion.li
               key={item.to}
