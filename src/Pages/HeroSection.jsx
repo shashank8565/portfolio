@@ -173,14 +173,14 @@ const HeroSection = () => {
 
           <div className="flex gap-4 mt-4 justify-center">
             <a
-              href="https://github.com/yourprofile"
+              href="https://github.com/shashank8565"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaGithub className="text-2xl hover:text-white" />
             </a>
             <a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://www.linkedin.com/in/shashank-845133213/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -271,7 +271,7 @@ const HeroSection = () => {
                 </p>
                 <div className="flex gap-4 mt-4">
                   <a
-                    href="https://www.linkedin.com/in/your-linkedin"
+                    href="https://www.linkedin.com/in/shashank-845133213/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:text-pink-400 text-2xl"
@@ -279,7 +279,7 @@ const HeroSection = () => {
                     <FaLinkedin />
                   </a>
                   <a
-                    href="https://github.com/your-github"
+                    href="https://github.com/shashank8565"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white text-2xl"
@@ -459,7 +459,7 @@ const HeroSection = () => {
           {/* Social Links */}
           <div className="mt-8 text-center flex justify-center gap-6">
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/shashank8565"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition text-2xl"
@@ -468,7 +468,7 @@ const HeroSection = () => {
               <FaGithub />
             </a>
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/shashank-845133213/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition text-2xl"
