@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import background from "../assets/background.png";
 import img from "../assets/img.png";
 import Card from "../components/Card";
 import bottom from "../assets/bottom.png";
 import "../App.css";
+import p2 from "../assets/p2.png";
+import project from "../assets/project.png";
 
 // Import icons
 import {
@@ -27,6 +29,47 @@ const HeroSection = () => {
     { icon: <FaNodeJs className="text-green-500" />, name: "Node.js" },
     { icon: <SiExpress className="text-gray-300" />, name: "Express.js" },
     { icon: <FaDatabase className="text-green-700" />, name: "MongoDB" },
+  ];
+
+  const scrollRef = useRef(null);
+
+  const scrollLeft = () => {
+    scrollRef.current?.scrollBy({ left: -400, behavior: "smooth" });
+  };
+
+  const scrollRight = () => {
+    scrollRef.current?.scrollBy({ left: 400, behavior: "smooth" });
+  };
+
+  const cardVariant = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.2,
+        duration: 0.6,
+        type: "spring",
+      },
+    }),
+  };
+
+  const projects = [
+    {
+      title: "Agency With Unlimited Possibilities",
+      description: "Creative design project example.",
+      link: "https://your-live-project-link.com",
+    },
+    {
+      title: "Justix & Skychex",
+      description: "Branding showcase design.",
+      link: "https://your-live-project-link.com",
+    },
+    {
+      title: "Modern UX Dashboard",
+      description: "Interactive dashboard for SaaS product.",
+      link: "https://your-live-project-link.com",
+    },
   ];
 
   return (
@@ -139,6 +182,88 @@ const HeroSection = () => {
           alt="Glow effect"
           className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[600px] sm:w-[700px] md:w-[800px] opacity-60 z-0 pointer-events-none"
         />
+      </section>
+
+      <section className="relative py-12 text-center overflow-hidden bg-black text-white">
+        {/* Spiky Background Overlay */}
+        <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+          <img
+            src={project}
+            alt="Background Decoration"
+            className="w-[500px] "
+          />
+        </div>
+
+        {/* Header Content */}
+        <div className="relative z-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+            Check our Work
+          </h2>
+          <p className="text-gray-400 max-w-xl mx-auto mb-8 px-4 sm:px-0 text-sm sm:text-base">
+            Take a look at some of our recent projects to see how we’ve helped
+            businesses like yours succeed online.
+          </p>
+        </div>
+
+        {/* Arrows */}
+        <div className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20">
+          <button
+            onClick={scrollLeft}
+            className="bg-gray-800 hover:bg-gray-700 rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center"
+          >
+            ←
+          </button>
+        </div>
+        <div className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20">
+          <button
+            onClick={scrollRight}
+            className="bg-gray-800 hover:bg-gray-700 rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center"
+          >
+            →
+          </button>
+        </div>
+
+        {/* Slider */}
+        <div className="relative z-10 px-2 sm:px-6">
+          <div
+            ref={scrollRef}
+            className="flex gap-6 sm:gap-8 overflow-x-auto snap-x snap-mandatory justify-start scroll-smooth max-w-screen-xl mx-auto scroll-px-[10%]"
+          >
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                custom={index}
+                variants={cardVariant}
+                initial="hidden"
+                animate="visible"
+                whileHover={{ scale: 1.05 }}
+                className="snap-center bg-white rounded-xl shadow-lg w-[90%] sm:w-[80%] md:w-[70%] shrink-0 transition-transform"
+              >
+                <img
+                  src={p2}
+                  alt={project.title}
+                  className="rounded-t-xl w-full h-52 sm:h-64 object-cover"
+                />
+                <div className="p-4 text-black">
+                  <h3 className="font-bold text-base sm:text-lg">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm mt-2 text-gray-600">
+                    {project.description}
+                  </p>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-4 text-blue-600 hover:underline font-medium text-sm"
+                  >
+                    🔗 View Live Project
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
     </>
   );
